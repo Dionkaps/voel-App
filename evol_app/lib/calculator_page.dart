@@ -13,6 +13,7 @@ class _CalcPageState extends State<CalcPage> {
   bool isEnabled = true;
   bool state2 = true;
   double percentageValue = 0;
+  String resultValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,7 @@ class _CalcPageState extends State<CalcPage> {
 
         setState(() {
           percentageValue = double.parse(percentage);
+          resultValue = result.toString();
         });
       } else {
         throw Exception('Failed to load data');
@@ -61,7 +63,7 @@ class _CalcPageState extends State<CalcPage> {
     );
 
     Widget percentage = Container(
-      child: Text('$percentageValue'),
+      child: Text('$percentageValue% Match \n $resultValue',textAlign: TextAlign.center,style: const TextStyle(fontWeight: FontWeight.bold),),
     );
 
     Widget restart = ElevatedButton(
@@ -89,6 +91,13 @@ class _CalcPageState extends State<CalcPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+                padding: EdgeInsets.only(bottom: tfPadding),
+                child: const Text(
+                  "Insert the names you want to check",
+                  style: TextStyle(fontSize: 25),
+                  textAlign: TextAlign.center,
+                )),
             Padding(
               padding: EdgeInsets.only(bottom: tfPadding),
               child: SizedBox(
